@@ -80,3 +80,15 @@ button:focus {
   border: 1px solid #2fd8f5;
   margin: 10px 0;
 }
+
+.expanded-info {
+  display: none;
+}
+
+.expanded-info.shown {
+  display: block;
+}
+
+.watch-button {
+  float: right;
+}

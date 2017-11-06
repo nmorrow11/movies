@@ -3,7 +3,13 @@ import './App.css';
 import ListContainer from './components/ListContainer';
 
 var movies = [
-
+  {title: 'Happy Gilmore'},
+  {title: 'Old School'},
+  {title: 'Big Daddy'},
+  {title: 'Billy Madison'},
+  {title: 'The Waterboy'},
+  {title: 'Old Boy'},
+  {title: 'The Shawshank Redemption'},
 ];
 
 class App extends Component {
