@@ -53,11 +53,15 @@ class ListContainer extends Component {
       <div className="ListContainer">
         <div className="add-movie">
           <input type="text" onChange={this.changeAddMovieText.bind(this)} placeholder="Add Movie..." value={this.state.pendingMovieText}></input>
-          <input type="submit" onClick={this.addMovieSubmit.bind(this)}></input>
+          <button className="submit-container" onClick={this.addMovieSubmit.bind(this)}>
+            <i class="fa fa-plus input-submit"></i>
+          </button>
         </div>
         <div className="search">
           <input type="text" onChange={this.changeText.bind(this)} placeholder="Search..." value={this.state.searchText}></input>
-          <input type="submit" onClick={this.searchForMovie.bind(this)}></input>
+          <button className="submit-container" onClick={this.searchForMovie.bind(this)}>
+            <i class="fa fa-search input-submit"></i>
+          </button>
         </div>
         <MovieList movies={this.state.filteredMovies}/>
       </div>

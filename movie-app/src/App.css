@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 30px;
 }
 
 .App-logo {
@@ -8,14 +9,14 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #2fd8f5;
+  height: 70px;
   padding: 20px;
   color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 30px;
 }
 
 .App-intro {
@@ -25,4 +26,57 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+input[type="text"] {
+  float: left;
+  width: 150px;
+  padding: 5px;
+  height: 20px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+input[type="submit"] {
+  height: 40px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.add-movie {
+  margin-right: 40px;
+  display: inline-block;
+}
+
+.search {
+  display: inline-block;
+}
+
+.submit-container {  
+  right: -50px;
+  width: 40px;
+  height: 33px;
+  border: none;
+  background: #2fd8f5;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.ListContainer {
+  text-align: left;
+}
+
+.MovieList {
+  padding: 30px 0;
+}
+
+.MovieListElement {
+  padding: 30px;
+  border: 1px solid #2fd8f5;
+  margin: 10px 0;
 }
