@@ -22,14 +22,10 @@ class ListContainer extends Component {
         .then(response => response.json())
         .then(jsondata => {
           var movieInfo = jsondata.results[0];
-          console.log(jsondata.results[0])
           var newData = context.state.movies.map(function(movie2) {
             if (movie2.title === movie.title) {
               movie2.description = movieInfo['overview'];
-              // movie2.year = movieInfo
-              // movie2.runtime = 
-              // movie2.Metascore =
-              // movie2.imdbRating = 
+              movie2.id = movieInfo['id'];
             }
             return movie2;
           });
@@ -88,7 +84,7 @@ class ListContainer extends Component {
     this.setState({
       movies: beenSeen
     })
-    console.log(this.state.movies)
+    
   }
     
   addMovieSubmit() {
@@ -124,18 +120,29 @@ class ListContainer extends Component {
     })
   }
   
-  render() {
-    // filter by current search
-    // var moviesToShow = []
-    // if (this.state.isFiltered) {
-    //   var context = this;
-    //   moviesToShow = this.state.movies.filter(function(movie) {
-    //     return movie.title.toLowerCase().includes(context.state.searchText.toLowerCase());
-    //   });
-    // } else {
-    //   moviesToShow = this.state.movies;
-    // }
-    
+  mergeMovieInfo(movie, detailedMovie) {
+    let newMovie = Object.assign({}, movie);
+    newMovie.runtime = detailedMovie.runtime;
+    newMovie.year = detailedMovie.release_date.substring(0,4);
+    newMovie.score = detailedMovie.popularity * 10;
+    console.log(newMovie)
+    return newMovie;
+  }
+  
+  callForMovieDetails(id){
+    fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=ed8db9957978c3e11b81a9f498113041')
+    .then(response => response.json())
+        .then(jsondata => {
+          console.log(jsondata)
+          this.setState({
+            filteredMovies: this.state.movies.map(movie => {
+              return movie.title === jsondata.original_title ? this.mergeMovieInfo(movie, jsondata) : movie;
+            }, this)
+          });
+        });
+  }
+  
+  render() {   
     console.log('rendering', this.state);
     return (
       <div className="ListContainer">
@@ -155,7 +162,7 @@ class ListContainer extends Component {
           <button onClick = {this.displayWatchedMovies.bind(this)}>Show Watched Movies</button>
           <button onClick = {this.displayUnWatchedMovies.bind(this)}>Show Unwatched Movies</button>
           <button onClick = {this.showAllMovies.bind(this)}>Show All The Movies</button>
-          <MovieList watch = {this.watchedMovie.bind(this)} movies={this.state.filteredMovies}/>
+          <MovieList watch = {this.watchedMovie.bind(this)} getDetails = {this.callForMovieDetails.bind(this)} movies={this.state.filteredMovies}/>
         </div>
       </div>
     );

@@ -13,7 +13,7 @@ class MovieList extends Component {
     var movieElements = [];
     for (var i = 0; i < this.props.movies.length; i++) {
       movieElements.push(
-        <MovieListElement watch = {this.props.watch} movieInfo={this.props.movies[i]}/>
+        <MovieListElement getDetails = {this.props.getDetails} watch = {this.props.watch} movieInfo={this.props.movies[i]}/>
       )  
     }
     if (movieElements.length === 0) {
